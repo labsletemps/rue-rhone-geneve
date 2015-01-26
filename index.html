@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rue du Rhône. Balade dans la rue qui valait des milliards. </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="css/fresco.css" />
+
+  <!-- <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'> -->  
+  <script src="js/jquery-2.0.0.min.js"></script>
+  <script src="js/d3.min.js"></script>
+  <script src="js/leaflet.js"></script>
+  <script type="text/javascript" src="js/fresco.js"></script> 
+
+
+  <meta property="og:title" content="Rue du Rhône. Balade dans la rue qui valait des milliards">
+    <meta property="og:site_name" content="Le Temps">
+    <meta property="og:image" content="img/chap1.jpg">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.letemps.ch/interactive/2015/rue-rhone-geneve/">
+    <meta property="og:description" content="Crans-Montana, la station accro aux forfaitaires">
+
+    <meta name="twitter:card" content="summary">
+
+    <meta name="twitter:site" content="@letemps">
+    <meta name="twitter:description" content="Rue du Rhône. Balade dans la rue qui valait des milliards">
+    
+    <meta name="twitter:image" content="img/chap1.jpg">
+
+
+
+
+l
+</head>
+<body>
+   <style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+hr {
+border-top: 0.5px dotted #fff;
+opacity:0.5;
+
+}
+body {
+  padding: 0;
+  margin: 0;
+  line-height: 1.4;
+  background: white;
+}
+canvas.backdrop {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+  z-index: -999;
+}
+section.text {
+  background: black;
+  padding: 1em 2em;
+}
+@media (max-device-width: 800px) {
+  section.text {
+    padding: 1em 2px;
+  }
+}
+.scroll-section {
+  
+  clear: both;
+  min-height: 1800px;
+  position: relative;
+}
+.scroll-section.fallback {
+  min-height: 0px;
+}
+.scroll-text {
+  float: left;
+  margin: 100px 20px 0 20px;
+  display: block;
+}
+.scroll-section:nth-child(2n) .scroll-text {
+  float: left;
+}
+@media (max-device-width: 800px) {
+  .scroll-text {
+    float: none;
+    margin: 0;
+  }
+}
+/* info boxes */
+.company-info {
+  background-color: rgba(0, 0, 0, 0.9);
+
+  opacity:0.9;
+  color: white;
+  font-family: Georgia;
+  font-size: 16px;
+  position: relative;
+  width: 450px;
+  padding: 8px 24px ;
+  margin-left:50px;
+  border-radius: 4px;
+  
+}
+@media (max-device-width: 800px) {
+  .company-info {
+    width: 100%;
+    top: -10px;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.9);
+  }
+}
+.company-info .header {
+  width: 300px;
+}
+.company-info .header > * {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.company-info .numeral {
+  float: left;
+  width: 40px;
+  margin-top: 0em;
+  margin-right: 15px;
+  margin-bottom: 1em;
+}
+.company-info h2 {
+  width: 400px;
+  margin-top: 10px;
+  font-weight:200;
+  float: left;
+}
+.company-info .description {
+  clear: both;
+}
+.company-info label {
+  background-color: #a7c5a9;
+  color: #222222;
+  font-family: Helvetica, sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+.company-info p {
+  font-family: georgia, times, serif;
+}
+.company-info .read-more {
+  background: #606060;
+  display: block;
+  text-align: center;
+  padding: 4px;
+  color: white;
+  text-decoration: none;
+  font-family: Verdana, sans-serif;
+  font-size: 14px;
+  border-radius: 4px;
+}
+.company-info .read-more:hover {
+  background: 148, 0, 38,0.6;
+}
+nav {
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  line-height: 40px;
+  vertical-align: middle;
+  font-family: verdana;
+  padding-left: 10px;
+  z-index: 999;
+}
+@media (max-device-width: 800px) {
+  nav {
+    position: relative;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+}
+nav a {
+  text-decoration: none;
+  border: none;
+}
+nav .logo {
+  height: 20px;
+  float: left;
+  margin-top: 10px;
+  margin-right: 19px;
+  border:0px dotted #fff;
+}
+@media (max-device-width: 800px) {
+  nav .logo {
+    float: none;
+    display: block;
+    margin: 4px auto;
+  }
+}
+nav #bonw-title {
+  font-weight: none;
+  color: #000;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+nav .company-ranking {
+  text-transform: uppercase;
+  margin-right: 1em;
+  font-size: 13px;
+}
+@media (max-device-width: 800px) {
+  nav .company-ranking {
+    display: none;
+  }
+}
+nav .company-ranking a {
+  color: #555555;
+  text-decoration: none;
+  padding: 0 4px;
+  font-size:11px;
+}
+nav .company-ranking a:hover {
+  background: #EEE;
+}
+nav sup {
+  font-size: 60%;
+}
+nav ul {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+nav ul li {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+/* special sections */
+#chart {
+  background: white;
+  color: black;
+}
+/* old/mobile */
+img.fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -9;
+  max-width: 100%;
+}
+@media (max-device-width: 800px) {
+  img.fallback {
+    position: relative;
+  }
+}
+
+.share-button {
+  position: absolute;
+  top: 10px;
+
+  right: 35px;
+  line-height: normal;
+}
+
+
+
+    </style>
+
+  
+      <nav>
+      <a href="http://www.letemps.ch/">
+        <img src="http://www.letemps.ch/rw/SysConfig/WebPortal/letemps/image/logo/logo_header.jpg" class="logo"/>
+      </a>
+      <ul>
+        <li id="bonw-title" style="color:#555555;"> </a></li>
+        
+         <li class="company-ranking"><a href="#ranked-7"><sup></sup></li>
+        
+      </ul>
+      <a class="share-button"></a>
+    </nav>
+
+
+
+<a id="layers" href="#">
+    <div class="map-header">
+      
+    </div>
+  </a>
+
+  <div id="legend" class="map-header">
+    <div class="map-header-wrapper"></div>
+  </div>  
+  
+  <div id="single-map-container">
+    <div id="single-map">
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="introduction">
+      <div class="header">
+        <br> <h1 style="width:160px;color:#fff;background:#940026;opacity:1;font-size:14px;font-family:Lucida Grande;margin-left:3%;font-weight:300;text-transform:uppercase;padding:2px 2px 2px 2px;">&nbsp;&nbsp;IMMOBILIER</h1>
+         <h1 style="font-weight: 300;line-height:110%;font-family:Georgia;font-size:40px">Rue du Rhône à Genève. Balade dans l'artère qui valait des milliards</h1>
+            <p style="font-size:16px;texst-decoration: none;"> par Sébastien DUBAS et Dejan NIKOLIC<small> </small></p>
+
+
+
+
+             <img src="img/chap0.jpg" style=";padding-top:10px;" width="95%"/>
+                       <span class="caption" style="padding-left:8px">La rue du Rhône est la deuxième artère la plus chère de Suisse, derrière la Bahnhofstrasse de Zurich.</span>
+
+      </div>
+
+<p>
+            Certains la comparent à la Cinquième Avenue de New York, voire à la place Vendôme de Paris. D’autres préfèrent la critiquer, la jugeant grisâtre, encombrée et toujours en travaux. Les plus belles enseignes du monde du luxe se bousculent aujourd’hui pour disposer d’une vitrine sur la rue du Rhône. Et les banquiers aussi. Le prix du mètre carré, lui, se négocie entre 20 000 et 30 000 francs. <br><br>Le Temps vous propose cette balade interactif le long de cette rue au fil des numéros. Pour plus d'informations, vous pouvez aussi retrouver notre longue enquête <a href="http://www.letemps.ch/Page/Uuid/96be26c4-a52a-11e4-9acf-c65b500212f4/Rue_du_Rh%C3%B4ne_chronique_dune_inflation_genevoise"><u>"Rue du Rhône, chronique d'une inflation"</u></a>  </big>
+            </p>
+                
+<br>
+    </div>
+    <ul>
+<li>
+   
+          <h2></h2>
+    
+     
+    
+
+
+
+
+      
+      </li> 
+    <!-- SLIDE 1 -->
+      <li>
+    <br><br>
+          <h2></h2>
+    
+     
+      <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+        <p>
+   Ce vaste bâtiment de bureaux, avec un grand magasin de chaussures au rez-de-chaussée, appartient à la famille Aeschbach depuis plusieurs générations. Le prix du mètre carré est aujourd’hui, et l’état, estimé à plus de 20 000 francs le mètre carré, soit au minimum cinq fois plus que ce qu’avaient payé les propriétaires à l’époque, estime un professionnel du milieu.
+        </p>
+     
+      
+ 
+          <p>
+          
+            <img src='img/chap1.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+
+
+
+
+      
+      </li>   
+
+
+   <!-- SLIDE 2 -->
+
+
+
+      <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+      Toujours en rénovation, le complexe d’immeubles situé entre les numéros 6 et 8 de la rue du Rhône et la rue de la Confédération a été vendu le 14 janvier 2015 par UBS pour 535 millions de francs. Un record. L’assureur zurichois Swiss Life a déboursé 30 000 francs par mètre carré. La première banque de Suisse restera locataire d’une zone d’automates au rez-de-chaussée.
+        </p>
+
+
+ <p>
+          
+            <img src='img/chap2.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+
+      </li>  
+
+   <!-- SLIDE 3 -->
+
+      <li><br><br>
+        <h2></h2>
+          <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+      Le numéro 11 de la rue du Rhône a été racheté en mars 2012 pour près de 25 millions de francs par une société inconnue au nom de «MARCHMONT INC, Kingstown». Il n’existe aucune autre trace de cette société sur internet.
+        </p><br><br>
+
+
+      </li> 
+
+   <!-- SLIDE 4 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+       Au registre foncier de la ville, UBS SA n’aura figuré qu’un an et demi en tant que propriétaire du numéro 12 de la rue du Rhône. En juillet 2005, la banque revend cet immeuble de bureaux – connu pour héberger Coop City – pour 83 millions de francs à AXA assurance. 
+        </p>
+      <p>
+          
+            <img src='img/chap4.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+   
+ <!-- SLIDE 5 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+      Cet immeuble a été vendu le 11 octobre 2006 pour un peu plus de 18 millions à la société  WYATT ESTATES II LIMITED derrière laquelle se cache l’homme d’affaires Hongkongais Tak Lee. Le même jour, le très riche asiatique rachetait un autre immeuble de bureaux en plein centre de Genève (14 place de la Fusterie). Pour la même somme.
+        </p>
+      <p>
+          
+            <img src='img/chap5.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+   
+ <!-- SLIDE 6 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+       Portant le nom du célèbre bijoutier genevois qui s’y installa dans les années 1980, la Maison Gallpopin a été vendue à la société CONTIGESTION SA en septembre 2012 pour 40,2 millions de francs. Elle héberge désormais, entre autres, la marque de chaussure aux semelles rouges Louboutin. Selon nos informations, les 1210 mètre carré rapporteraient un rendement annuel de 3,36% à ses propriétaires.
+        </p>
+      <p>
+          
+            <img src='img/chap6.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+   
+
+ <!-- SLIDE 7 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+       En décembre 2012, la banque britannique HSBC se sépare de son immeuble au numéro 23 de la rue du Rhône pour 108 millions de francs. L’homme d’affaires de Hongkong Tak Lee, via sa société d’investissement WYATT ESTATES II ILLIMITED, acquiert ainsi un troisième immeubles sur la célèbre artère après les numéros 13 et 42.
+        </p>
+      <p>
+          
+            <img src='img/chap7.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+   
+
+ <!-- SLIDE 8 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+      Deux mois après Chanel, qui s’est offert l’immeuble sis au numéro 43 de la rue du Rhône, la célèbre marque de luxe française Hermès, via sa société anonyme HERMES IMMOBILIER GENEVE SA, met la main, en juillet 2008, sur le numéro 39 de la même rue. Prix de la transaction ?  68 millions de francs, soit 5 millions de plus que sa rivale.
+        </p>
+      <p>
+          
+            <img src='img/chap8.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+   
+
+<!-- SLIDE 9 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+    Le complexe situé au 42 rue du est racheté en novembre 2007 pour 88 millions par la société TALENT PROPERTIES LIMITED basée à Hongkong. Derrière celui-ci se cache une nouvelle fois l’homme d’affaire Tak Lee, déjà propriétaire de plusieurs immeubles à Genève dont les numéros 13, 23 et 42 de la rue du Rhône. Le bien immobilier, qui appartenait à l’homme d’affaires genevois Nessim Gaon, avait été mis aux enchères par la justice genevoise.
+        </p>
+      <p>
+          
+            <img src='img/chap9.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+
+<!-- SLIDE 10 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+      En avril 2008, Chanel s’offre son propre immeuble rue du Rhône. Via LAPODUK SARL, basée au Luxembourg, elle rachète à la Fondation de prévoyance professionnelle de la Banque cantonale de Genève l’immeuble situé entre le 43 rue du Rhône et le 24 quai du Général Guisan pour un peu plus de 63 millions de francs. Elle sera imitée deux mois plus tard par sa concurrente Hermès qui mettra la main sur le numéro 39 pour 68 millions.
+        </p>
+      <p>
+          
+            <img src='img/chap10.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+
+
+<!-- SLIDE 11 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+       En décembre 2004, la Société genevoise d’investissements fonciers rachète à la Compagnie suisse de réassurances, propriétaire de lieux depuis 1984, l’immeuble de bureaux situé entre la rue du Rhône 65 et la rue François-Versonnex 2. Prix de la transaction : 82,25 millions de francs
+        </p>
+      <p>
+          
+            <img src='img/chap11.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+
+
+      <!-- SLIDE 12 -->
+
+  <li><br><br>
+        <h2></h2>
+                     <hr style="border-top:1px dotted #333;margin-left:15px;margin-right:15px;"></p>
+ 
+    <p>
+      Ces deux immeubles d’habitations appartiennent à la Fondation Philanthropique Edmond J. Safra.  La Fondation Hélène et Victor Barbour, du nom de deux mécènes genevois, possède quant à elle les immeubles sis aux numéros 30 et 100 de la rue du Rhône.
+        </p>
+      <p>
+          
+            <img src='img/chap12.jpg' style="margin-left:0px;" width="95%"/>     
+
+       
+         
+        </p>
+      </li>  
+
+<br><br>
+      
+   <hr style="border-top:1px dotted #000;margin-left:15px;margin-right:15px;" >
+  <p style="margin-left:10px;font-color:#666"> Crédits<br>
+   <small>Enquête: Sébastien DUBAS et Dejan NIKOLIC<br>
+   Réalisation & documentation : Jean ABBIATECI<br>
+   Photos : Eddy MOTTAZ</br>
+</p>
+
+
+      
+
+        
+<br>   
+    </ul>
+  </div>
+
+
+  <script charset="utf-8">
+    var map,
+        maps;
+        
+    var exhibition = false,
+        width = 280;
+        
+    var disableMapChange = false,
+        disableTextChange = false;
+    
+    var disableMapChangeTimeout,
+        disableTextChangeTimeout;
+        
+    var tileLayerBlackWhite,
+        tileLayerColor;
+        
+    var inactivityTimeout;
+    
+    function textChange() {
+      if (exhibition) {
+        setInactivityTimeout()
+      }
+      
+      disableTextChange = true;
+           
+      var closestFeature,
+          index,
+          smallestDistance = Number.POSITIVE_INFINITY;
+
+      var scrollTop = d3.select("#sidebar").property("scrollTop");        
+      //console.log("#sidebar scrollTop = " + scrollTop);
+      maps.features.forEach(function(d, i) {
+        
+        var nth = d3.select("#sidebar ul li:nth-child(" + (i + 1) + ")");
+        var offsetTop = nth[0][0].offsetTop;
+        
+        var distance = scrollTop - offsetTop;
+        if (Math.abs(distance) < smallestDistance && distance > -100) {
+          smallestDistance = distance;
+          index = i;
+        }          
+      });
+      
+      clearInterval(disableTextChangeTimeout);    
+      disableTextChangeTimeout = setInterval(function(){ 
+        disableTextChange = false;
+      }, 1800);
+  
+      if (!disableMapChange) {
+        setMap(index);
+      }
+      if (index >= 0) {
+        window.location.hash = maps.features[index].properties.name + (exhibition ? "/exhibition" : "");
+      }      
+    }
+    
+    function mapChange() {
+      if (exhibition) {
+        setInactivityTimeout()
+      }
+      if (map.getZoom() >= 21) {
+        disableMapChange = true;
+        
+        var center = map.getCenter();
+        var index,
+            smallestDistance = Number.POSITIVE_INFINITY;
+        maps.features.forEach(function(d, i) {          
+          var latlng = L.latLng(d.geometry.coordinates[1], d.geometry.coordinates[0]);            
+          var distance = latlng.distanceTo(center);
+          if (distance < smallestDistance) {
+            smallestDistance = distance;
+            index = i;
+          } 
+        });
+        
+        clearInterval(disableMapChangeTimeout);    
+        disableMapChangeTimeout = setInterval(function(){ 
+          disableMapChange = false;
+        }, 1800);
+        
+        if (!disableTextChange) {
+          setText(index);
+        }
+      
+      }   
+    }
+    
+    function setText(i) {
+      var nth = d3.select("#sidebar ul li:nth-child(" + (i + 1) + ")");
+      var offsetTop = nth[0][0].offsetTop;
+      
+      d3.select("#sidebar").transition()
+          .duration(1200)
+          .tween("tween", scrollTopTween(offsetTop));          
+    }
+
+    function setMap(i) {          
+      map.setView([
+        maps.features[i].geometry.coordinates[1], 
+        maps.features[i].geometry.coordinates[0]
+        ], 
+        maps.features[i].properties.zoom2);
+    }
+    
+    d3.json("data/maps.json", function(json) {
+      
+      map = L.map('single-map', {
+        minZoom: 8,
+        maxZoom: 22,
+        zoomControl: false
+      });
+      new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
+
+      d3.select("#single-map").style("background-color", "white");
+
+      var LeTempsAttribution = '<span style="color:black;">OSM | <a href="https://github.com/waagsociety/mansholt">Code Waag Society</a> | Data le Temps </span><img id="letemps-mini" src="img/letemps.png" />';
+      
+      tileLayerBlackWhite = L.tileLayer("http://a.tiles.mapbox.com/v3/jeanabbiateci.ef2b82b2/{z}/{x}/{y}.png", {
+        attribution: LeTempsAttribution
+      }).addTo(map);
+
+ tileLayerColor = L.tileLayer("http://a.tiles.mapbox.com/v3/jeanabbiateci.ef2b82b2/{z}/{x}/{y}.png", {
+        attribution: LeTempsAttribution
+      }); 
+
+ 
+      
+      maps = json;
+      var li = d3.select("#sidebar").selectAll("li")
+          .data(maps.features);                  
+          
+      li.select("h2")
+        .html(function(d) { return d.properties.title; });      
+      
+      map.on('moveend', mapChange);
+      d3.select("#sidebar").on("scroll", textChange);
+      
+      var index = -1,
+          hash = window.location.hash.substring(1),
+          name = hash.split("/")[0];
+          
+      maps.features.forEach(function(d, i) {
+        if (d.properties.name === name) {
+          index = i;
+        }
+      });
+      
+      if (index >= 0) {
+        setMap(index);
+        setText(index);
+      } else {
+        map.setView([46.204513, 6.14791], 14);
+      }      
+      
+    });
+        
+    function scrollTopTween(scrollTop) { 
+      return function() { 
+        var i = d3.interpolateNumber(this.scrollTop, scrollTop); 
+          return function(t) { this.scrollTop = i(t); }; 
+      }; 
+    }
+    
+    function setInactivityTimeout() {
+      clearInterval(inactivityTimeout);    
+      inactivityTimeout = setInterval(function() { 
+        window.location.href = "../" + (exhibition ? "#exhibition" : "");
+      }, 2 * 60 * 1000);
+    }
+    
+    d3.select("#toggle-text").on("click", function() {
+      d3.selectAll("#toggle-text .link").classed("enabled", function(d, i) {
+        var enabled = d3.select(this).classed("enabled");
+        if (i == 0) {
+          toggleText(enabled);
+        }        
+        return !enabled;
+      });
+      
+      d3.event.preventDefault();
+    });
+    
+    d3.select("#layers").on("click", function() {
+      d3.selectAll("#layers .link").classed("enabled", function(d, i) {
+        var enabled = d3.select(this).classed("enabled");
+        if (i == 1) {
+          setCrops(enabled);
+        }        
+        return !enabled;
+      });
+      
+      d3.event.preventDefault();
+    });
+    
+    var hash = window.location.hash.substring(1);
+    if (hash.split("/").indexOf("exhibition") >= 0) {
+      exhibition = true;
+      
+      width = 400;
+      
+      d3.select("#introduction").remove();
+      d3.select("a#back").attr("href", "../#exhibition");
+
+      d3.select("#sidebar").style("font-size", "15px");
+      d3.select("#sidebar").style("width", width + "px");
+      d3.select("#single-map-container").style("right", width + "px");
+
+      d3.selectAll("#sidebar img").style("width", (width - 80) + "px");
+      
+      d3.select("body").on("mousemove", setInactivityTimeout);
+      d3.select("body").on("mousedown", setInactivityTimeout);
+      d3.select("body").on("keypress", setInactivityTimeout);
+      
+    }
+    
+    function toggleText(enabled) {
+      if (enabled) {
+        d3.select("#sidebar").style("display", "none");
+        d3.select("#single-map-container").style("right", "0");
+      } else {
+        disableMapChange = true;
+        d3.select("#sidebar").style("display", "block");
+        d3.select("#single-map-container").style("right", width + "px");
+      }
+      map.invalidateSize();
+    }
+    
+    function setCrops(enabled) {
+      if (enabled) {
+        map.addLayer(tileLayerColor);
+        map.removeLayer(tileLayerBlackWhite);
+        d3.select("#legend").style("display", "block");
+      } else {
+        map.addLayer(tileLayerBlackWhite);
+        map.removeLayer(tileLayerColor);
+        d3.select("#legend").style("display", "none");
+      }      
+    }
+  
+        
+    var table = d3.select("#legend div").append("table");
+    var tr = table.selectAll("tr").data(crops).enter().append("tr");
+    tr.append("td").attr("class", function(d) { return d.name; });
+    tr.append("td").html(function(d) { return d.title; });
+    
+
+
+
+
+
+  </script>
+   <script src="js/share.min.js"></script>
+    <script>
+new Share(".share-button", {
+  ui: {
+    flyout: "bottom left"
+  }
+})
+    </script>
+
+</body>
+</html>

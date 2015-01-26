@@ -1,0 +1,254 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:focus {
+  outline: 0;
+}
+
+body {
+  background-color: black;
+  font-family: Georgia;
+
+  font-size: 15px;
+  overflow-y:hidden;
+}
+
+html, body {
+	height: 100%;
+  background-color: white;  
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+#main-header {
+  z-index: 1024;
+  display: block;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background-color: white;
+  padding: 8px 15px;
+}
+
+#back .map-header,
+#toggle-text .map-header,
+#layers .map-header {
+  display: block;
+}
+
+.map-container {
+  position: absolute;
+
+}
+
+.map {
+  top: 30px;
+  right:0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.map-header {
+  display: none;
+  z-index: 999;
+ 
+  position: absolute;
+  height: auto;
+  
+  /*width: 100%;*/
+  
+  margin: 15px;
+  margin-top:-20px;
+}
+
+.map-header .map-header-wrapper {
+  /*padding: 3px;*/
+  padding: 0px 0px;
+  background: rgba(0, 0, 0, 0.5);
+  color:#fff;
+  width:230px;
+  font-family:Georgia;
+
+}
+
+.map-container.top .map-header {
+  top: 0;
+}
+
+.map-container.bottom .map-header {
+  bottom: 0;
+}
+
+.map-header h2,
+.map-header p {
+  display: inline;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*a .map-header h2 {
+  text-decoration: underline;
+}*/
+
+.header h3,
+a .map-header span.link {
+  text-decoration: none;
+}
+
+a .map-header span.link.toggle {
+  text-decoration: none;
+}
+
+a .map-header span.link.toggle.enabled {
+  text-decoration: none;
+  font-weight: none;
+}
+
+
+a,
+a:hover,
+a:visited {
+  color: black;
+}
+
+.map-header h2 {
+  margin-right: 5px;
+}
+
+.map-header span {
+  margin-right: 5px;
+}
+
+.map-container.active .map-header {
+  display: block;
+}
+
+#single-map-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 50%;
+  bottom: 0;
+  margin: 0px;
+}
+
+
+#single-map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#sidebar {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  margin-top:50px;
+  width: 50%;
+  padding-left:15px;
+
+  height: 90%;
+  overflow-y: scroll;
+  font-size: 18px;
+}
+
+#sidebar p
+{
+
+  padding: 10px 20px;
+  margin-right:3px;
+font-size: 18px;
+line-height: 1.42857143;
+color: #000;
+margin-right:25px;
+overflow-y:hidden;
+
+}
+
+
+ #sidebar h1, #sidebar h2, #sidebar h3 {
+  padding: 10px 20px;
+}
+
+#sidebar h1 {
+  font-size: 30px;
+  padding-bottom: 0;
+}
+
+
+
+#sidebar h2 {
+  font-size: 23px;
+  font-weight:300;
+}
+
+#sidebar h3 {
+  font-size: 19px;
+  padding-top: 0;
+}
+
+#sidebar img, 
+#sidebar .caption {
+  margin-left: 15px;
+  font-size: 13px;
+}
+
+#sidebar .caption {
+  display: block;
+  margin-bottom: 20px;
+  font-style:italic;
+}
+
+#introduction,
+#sidebar li { 
+  padding-bottom: 0px;
+   list-style-type: none;
+
+}
+
+#letemps-mini {
+  top: 2px;
+  position: relative;
+  height:12px;
+}
+
+#layers .map-header, 
+#legend.map-header {
+  width: 190px;
+}
+
+#toggle-text .map-header {
+  top: 45px;
+}
+
+#layers .map-header {
+  top: 90px;
+}
+
+#legend.map-header {
+  top: 120px;
+}
+
+#legend table  {
+border-spacing: 3px;
+}
+
+#legend table tr td:first-child {
+  width: 30px;
+}
+
+#legend table tr td:last-child {
+  padding-left: 5px;
+}
+

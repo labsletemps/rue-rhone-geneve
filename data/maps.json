@@ -1,0 +1,235 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "",
+        "name": "0",
+        "zoom1": 16,
+        "zoom2": 16
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.148,46.204
+
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°4 </span> La dynastie Aeschbach",
+        "name": "4",
+        "zoom1": 18,
+        "zoom2": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.145,46.204
+
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°8 </span>La vente de tous les records ",
+        "name": "8",
+        "zoom1": 18,
+        "zoom2": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.145,46.204
+
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°11 </span>L’acheteur mystérieux",
+        "name": "11",
+        "zoom1": 19,
+        "zoom2": 19
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            6.1445,46.205
+        ]
+      }
+    }
+    ,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°12 </span>Un an et demi et puis s’en va",
+        "name": "12",
+        "zoom1": 18,
+        "zoom2": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        6.1453673,46.2036055
+        ]
+      }
+    }
+     
+,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°13 </span>Tak Lee débarque à la rue du Rhône",
+        "name": "13",
+        "zoom1": 19,
+        "zoom2": 19
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            6.1445,46.205
+        ]
+      }
+    }
+
+    
+,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°17 </span>La Maison Gallopin",
+        "name": "17",
+        "zoom1": 19,
+        "zoom2": 19
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        6.1452,46.2040
+          
+        ]
+      }
+    }
+
+    ,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°23 </span>HSBC quitte les lieux",
+        "name": "23",
+        "zoom1": 18,
+        "zoom2": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.147274,46.2038752
+
+
+
+        ]
+      }
+    }
+,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°39 </span>Hermès imite Chanel",
+        "name": "39",
+        "zoom1": 18,
+        "zoom2": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           6.1503898,46.2043496
+        ]
+      }
+    }
+,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°42 </span>Tak Lee persiste et signe ",
+        "name": "42",
+        "zoom1": 18,
+        "zoom2": 18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.145874,46.2033752
+         
+        ]
+      }
+    }
+
+,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°43 </span>Chanel ",
+        "name": "43",
+        "zoom1": 18,
+        "zoom2": 18
+      },
+     "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.1503898,46.2043496
+        ]
+      }
+    }
+
+,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°65 </span>Swiss Re vend son paquebot",
+        "name": "65",
+        "zoom1": 17,
+        "zoom2": 17
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.154700,46.203007
+        ]
+      }
+    }
+,
+
+  {
+      "type": "Feature",
+      "properties": {
+        "title": "<span style='background-color:#940026;color:#fff;margin-right:10px;padding:2px 2px 2px 5px;''>N°78 et N°92 </span>La rue des philanthropes ",
+        "name": "78-92",
+        "zoom1": 16,
+        "zoom2": 16
+      },
+       "geometry": {
+        "type": "Point",
+        "coordinates": [
+         6.146,46.204
+
+        ]
+      }
+    }
+  ]
+  
+}
+
