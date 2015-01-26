@@ -1,4 +1,4 @@
-## Balade interative - rue du Rhône (Genève)
+## Balade interactive - rue du Rhône (Genève)
 letemps.ch - janvier 2015
 
 
